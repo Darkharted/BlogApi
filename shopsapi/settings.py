@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     # Приложения
     'product',
     'account',
+    'cart',
 
     # Установленные библиотеки
     'rest_framework',

@@ -5,11 +5,12 @@ from .models import Product, ProductReview
 from rest_framework import filters as rest_filters
 from django_filters import rest_framework as filters
 from rest_framework import permissions
-from rest_framework.permissions import IsAdminUser, IsAuthenticatedOrReadOnly
+from rest_framework.permissions import  IsAuthenticatedOrReadOnly
+from rest_framework.decorators import action
+from rest_framework.response import Response
 
 
-class ProductViewSet(viewsets.ModelViewSet):
-
+class ProductViewset(viewsets.ModelViewSet):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
 
@@ -18,6 +19,12 @@ class ProductViewSet(viewsets.ModelViewSet):
         filters.DjangoFilterBackend,
         rest_filters.SearchFilter
     ]
+    filter_fields = ['price', 'title']
+    search_fields = ['title', 'id']
+    def get_permissions(self):
+        if self.action in ['create', 'update', 'partial_update']:
+            return [IsAuthenticatedOrReadOnly()]
+        return []
 
 
 

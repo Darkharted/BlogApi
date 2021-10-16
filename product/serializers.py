@@ -15,8 +15,6 @@ class ProductSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 
-
-
 class ProductReviewSerializer(serializers.ModelSerializer):
 
     product_title = serializers.SerializerMethodField("get_product_title")

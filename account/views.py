@@ -41,8 +41,6 @@ class LoginView(ObtainAuthToken):
     serializer_class = LoginSerializer
 
 
-# Если вам нужно передать request в сериализаторы
-# То нужно переопделить методы get_serializer_context & get_serializer
 
 
 class LogoutView(APIView):

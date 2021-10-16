@@ -1,5 +1,7 @@
 from rest_framework import serializers
 from .models import Product, ProductReview
+from likes import services as likes_services
+
 
 
 
@@ -7,12 +9,28 @@ class ProductSerializer(serializers.ModelSerializer):
     """
     Класс для перевода типов данных Python в json формат
     """
+
+
     class Meta:
         """
         Класс для передачи дополнительных данных
         """
         model = Product
-        fields = "__all__"
+        fields = ("id",
+                  "created_at",
+                  "title",
+                  "price",
+                  "description",
+                  "image",
+                  'total_likes',
+                )
+
+    def get_is_fan(self, obj): 
+        """
+        Проверяет, лайкнул ли `request.user` продукт (`obj`).
+        """
+        user = self.context.get('request').user
+        return likes_services.is_fan(obj ,user)
 
 
 class ProductReviewSerializer(serializers.ModelSerializer):

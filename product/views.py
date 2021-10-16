@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from rest_framework import viewsets
+from likes.mixins import LikedMixin
 from product.serializers import ProductReviewSerializer, ProductSerializer
 from .models import Product, ProductReview
 from rest_framework import filters as rest_filters
@@ -10,7 +11,7 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 
 
-class ProductViewset(viewsets.ModelViewSet):
+class ProductViewset(LikedMixin, viewsets.ModelViewSet):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
 

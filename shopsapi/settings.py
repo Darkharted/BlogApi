@@ -41,11 +41,13 @@ INSTALLED_APPS = [
     'product',
     'account',
     'cart',
+    'likes.apps.LikesConfig',
 
     # Установленные библиотеки
     'rest_framework',
     'rest_framework.authtoken',
     'django_filters',
+    'drf_yasg',
 
 
 ]

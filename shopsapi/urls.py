@@ -18,7 +18,9 @@ from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from product.views import ProductReviewViewSet, ProductViewset
 from django.conf import settings
-from django.conf.urls.static import static 
+from django.conf.urls.static import static
+from .yasg import urlpatterns as doc_urls
+
 
 
 router = DefaultRouter()
@@ -38,4 +40,7 @@ urlpatterns = [
 
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+
+urlpatterns += doc_urls
 

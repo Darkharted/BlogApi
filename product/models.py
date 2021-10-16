@@ -20,7 +20,7 @@ class Product(CreateDateModel):
     STATUS = Choices('Available', 'Not existed')
     title = models.CharField(max_length=50, unique=True)
     price = models.DecimalField(max_digits=10, decimal_places=2)
-    image = models.ImageField(upload_to='media', null=False, blank=False)
+    image = models.ImageField(upload_to='media', null=True, blank=True)
     status = StatusField
     description = models.TextField()
 
